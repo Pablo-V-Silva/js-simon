@@ -4,6 +4,10 @@ genNumbersArray();
 
 // Dichiarazione dell'array dove verrà contenuto la risposta al prompt
 let numberOfPrompt = [];
+/* console.log(numberOfPrompt); */
+
+let rightNumber = [];
+console.log(rightNumber);
 
 // Disclaimer dei numeri da ricordare
 let disclaimer = alert([...numbersArray]);
@@ -18,9 +22,6 @@ function randomNumbers(min, max) {
 
 // Generazione dei numeri da inserire all'interno dell'array
 function genNumbersArray() {
-  /* for (let i = 0; numbersArray.length < 5; i++) {
-    numbersArray.push(randomNumbers());
-  } */
   while (numbersArray.length < 5) {
     let number = randomNumbers();
     if (!numbersArray.includes(number)) {
@@ -32,12 +33,15 @@ function genNumbersArray() {
 
 // Richiesta da parte nostra all'utente di ricordare i numeri
 function askNumberToUser() {
-  let i = 0;
-  while (numberOfPrompt.length < 5) {
-    let number = [i];
-    if (!numberOfPrompt.includes(number)) {
-      let promptNumbers = Number(prompt('Vediamo se ti ricordi i numeri! scrivi qui i numeri che erano scritti prima!'));
+  while (numberOfPrompt.length < numbersArray.length) {
+    let promptNumbers = Number(prompt('Vediamo se ti ricordi i numeri! scrivi qui i numeri che erano scritti prima!'));
+
+    if (!numberOfPrompt.includes(promptNumbers)) {
       numberOfPrompt.push(promptNumbers);
+      if (numbersArray.includes(promptNumbers)) {
+        rightNumber.push(promptNumbers)
+      }
     }
   }
 }
+
