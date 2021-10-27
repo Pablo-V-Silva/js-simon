@@ -6,16 +6,16 @@ genNumbersArray();
 let numberOfPrompt = [];
 /* console.log(numberOfPrompt); */
 
+// Array contenente i numeri giusti inseriti dall'utente
 let rightNumber = [];
-console.log(rightNumber);
 
 // Disclaimer dei numeri da ricordare
 let disclaimer = alert([...numbersArray]);
 
 // Timer di n secondi dopo l'alert per la richiesta dei numeri 
-let clock = setTimeout(askNumberToUser, 2000);
+let clock = setTimeout(askNumberToUser, 30000);
 
-// Funzione che genera dei numeri casuali da 1 a 100
+// Funzione che genera dei numeri casuali da 1 a 10
 function randomNumbers(min, max) {
   return Math.floor(Math.random() * 10 + 1);
 }
@@ -33,11 +33,15 @@ function genNumbersArray() {
 
 // Richiesta da parte nostra all'utente di ricordare i numeri
 function askNumberToUser() {
+
+  // Ciclo che riempie le mie array
   while (numberOfPrompt.length < numbersArray.length) {
     let promptNumbers = Number(prompt('Vediamo se ti ricordi i numeri! scrivi qui i numeri che erano scritti prima!'));
 
+    // SE i miei numeri generati randomicamente sono uguali, non li pushare all'interno dell'array dei numeri inseriti dal'utente e continua a chiedere i numeri da inserire finchè i numeri non saranno diversi
     if (!numberOfPrompt.includes(promptNumbers)) {
       numberOfPrompt.push(promptNumbers);
+      // SE i numeri che io inserisco equivalgono ai numeri generati randomicamente allora li pushero all'interno dell'array dei numeri corretti, nonchè il nostro effettivo punteggio
       if (numbersArray.includes(promptNumbers)) {
         rightNumber.push(promptNumbers)
       }
@@ -46,7 +50,7 @@ function askNumberToUser() {
   document.querySelector('.risposta').innerHTML = elementHTML();
 }
 
-
+// Elemento dell'HTML che verrà inserito dentro al conteiner della risposta
 function elementHTML() {
   return `<h1>Hai Indovinato i Seguenti Numeri: ${[rightNumber]}, il tuo punteggio è di ${rightNumber.length}</h1>`
 }
