@@ -43,5 +43,10 @@ function askNumberToUser() {
       }
     }
   }
+  document.querySelector('.risposta').innerHTML = elementHTML();
 }
 
+
+function elementHTML() {
+  return `<h1>Hai Indovinato i Seguenti Numeri: ${[rightNumber]}, il tuo punteggio è di ${rightNumber.length}</h1>`
+}
